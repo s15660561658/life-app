@@ -1,0 +1,235 @@
+/* 设计令牌 + 全局 reset */
+:root {
+  /* 颜色 */
+  --c-primary: #4f7cff;
+  --c-primary-weak: #eef2ff;
+  --c-success: #22c55e;
+  --c-success-weak: #ecfdf3;
+  --c-danger: #ef4444;
+  --c-danger-weak: #fef2f2;
+  --c-warning: #f59e0b;
+  --c-warning-weak: #fffbeb;
+  --c-purple: #8b5cf6;
+  --c-purple-weak: #f5f3ff;
+  --c-teal: #14b8a6;
+  --c-teal-weak: #f0fdfa;
+
+  --c-bg: #f5f6f8;
+  --c-card: #ffffff;
+  --c-text: #1f2329;
+  --c-text-2: #646a73;
+  --c-text-3: #8f959e;
+  --c-border: #e5e6eb;
+  --c-line: #f0f1f3;
+
+  /* 圆角 */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-full: 999px;
+
+  /* 间距 */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+
+  /* 字号 */
+  --fs-xs: 12px;
+  --fs-sm: 13px;
+  --fs-md: 14px;
+  --fs-lg: 16px;
+  --fs-xl: 20px;
+  --fs-2xl: 26px;
+
+  --shadow-card: 0 1px 3px rgba(31, 35, 41, 0.06);
+  --sidebar-w: 200px;
+  --tabbar-h: 56px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: var(--fs-md);
+  color: var(--c-text);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+  min-height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: var(--fs-md);
+  color: var(--c-text);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* 通用工具类 */
+.card {
+  background: var(--c-card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-4);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-1);
+  padding: 8px 16px;
+  border-radius: var(--r-md);
+  font-size: var(--fs-md);
+  transition: opacity 0.12s, background 0.12s;
+  user-select: none;
+}
+
+.btn:active {
+  opacity: 0.8;
+}
+
+.btn-primary {
+  background: var(--c-primary);
+  color: #fff;
+}
+
+.btn-plain {
+  background: var(--c-bg);
+  color: var(--c-text);
+}
+
+.btn-danger {
+  background: var(--c-danger);
+  color: #fff;
+}
+
+.btn-danger-plain {
+  background: var(--c-danger-weak);
+  color: var(--c-danger);
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: var(--fs-sm);
+  border-radius: var(--r-sm);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.field {
+  margin-bottom: var(--sp-4);
+}
+
+.field-label {
+  display: block;
+  font-size: var(--fs-sm);
+  color: var(--c-text-2);
+  margin-bottom: var(--sp-1);
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  background: var(--c-card);
+  outline: none;
+  transition: border-color 0.12s;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: var(--c-primary);
+}
+
+.textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+
+.muted {
+  color: var(--c-text-3);
+  font-size: var(--fs-sm);
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-title {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  margin-bottom: var(--sp-4);
+}
+
+/* 页面容器：桌面留出侧栏，移动留出底部 tab */
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--sp-5);
+}
+
+@media (max-width: 767px) {
+  .page {
+    padding: var(--sp-4) var(--sp-4) calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 16px);
+  }
+}
